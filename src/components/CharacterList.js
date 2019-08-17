@@ -1,16 +1,43 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import CharacterCard from "./CharacterCard";
 
 export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
-
+  const [charactersData, setCharactersData] = useState([]);
+  
   useEffect(() => {
-    // TODO: Add AJAX/API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, []);
+    axios
+    .get('https://rickandmortyapi.com/api/character/')
+    .then(res => setCharactersData(res.data.results))
+    .catch(err =>console.log(err))
+  }, [charactersData]);
 
   return (
     <section className="character-list grid-view">
-      <h2>TODO: `array.map()` over your state here!</h2>
+        {charactersData.map(character =>{
+          return <CharacterCard 
+          key={character.id}
+          image={character.image}
+          gender={character.gender}
+          location={character.location}
+          name={character.name}
+          homeWorld={character.origin.name}
+          hwurl={character.origin.url}
+          speciec={character.species}
+          status={character.status}
+          />
+        })}
     </section>
   );
 }
+
+/* 
+  gender: "Male"
+id: 1
+image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+location: {name: "Earth (Replacement Dimension)", url: "https://rickandmortyapi.com/api/location/20"}
+name: "Rick Sanchez"
+origin: {name: "Earth (C-137)", url: "https://rickandmortyapi.com/api/location/1"}
+species: "Human"
+status: "Alive"
+*/
