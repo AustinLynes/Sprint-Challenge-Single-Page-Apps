@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import EpisodeCard from "./EpisodesCard";
+import SearchForm from "./SearchForm";
 
 export default function EpisodeList() {
   const [episdeData, setEpisodeData] = useState([]);
@@ -14,6 +15,7 @@ export default function EpisodeList() {
 
   return (
     <section className="character-list grid-view">
+     
         {episdeData.map(ep =>{
           return <EpisodeCard
             key={ep.id}

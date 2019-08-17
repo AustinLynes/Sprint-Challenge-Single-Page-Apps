@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import LocationCard from "./LocationCard";
+import SearchForm from "./SearchForm";
 
 export default function LocationsList() {
 
@@ -8,13 +9,14 @@ export default function LocationsList() {
   
     useEffect(() => {
       axios
-      .get('https://rickandmortyapi.com/api/location')
+      .get('https://rickandmortyapi.com/api/location/')
       .then(res => setLocationData(res.data.results))
       .catch(err =>console.log(err))
     }, [locationData]);
   
     return(
         <section className=" grid-view">
+       
             {locationData.map(location =>{
                 return <LocationCard 
                 key={location.name.toUpperCase()}
