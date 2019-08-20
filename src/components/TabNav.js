@@ -9,26 +9,34 @@ export default function TabNav() {
     width: 100%;
     justify-content: space-evenly;
     border-bottom: 1px solid black;
-    padding: 10px;
+    padding-top:2rem;
     .nz-nav-link {
-      &:active {
-        border: 1px solid grey;
+      text-align:center;
+      width:20%;
+      height:30px;
+      color:black;
+      font-size:1.4rem;
+      padding:10px;
+      &:hover {
+        border-top: 1px solid grey;
+        border-right: 2px solid grey;
+        border-left: 2px solid grey;
       }
     }
   `;
 
   return (
     <Nav>
-      <NavLink to="/" className="nz-nav-link">
+      <NavLink exact to="/" className="nz-nav-link" activeClassName='active'>
         HomePage
       </NavLink>
-      <NavLink to="/character-list" className="nz-nav-link">
+      <NavLink exact to="/character-list" className="nz-nav-link">
         Character
       </NavLink>
-      <NavLink to="/location-list" className="nz-nav-link">
+      <NavLink exact to="/location-list" className="nz-nav-link">
         Locations
       </NavLink>
-      <NavLink to="/episode-list" className="nz-nav-link">
+      <NavLink exact to="/episode-list" className="nz-nav-link">
         Episodes
       </NavLink>
     </Nav>
